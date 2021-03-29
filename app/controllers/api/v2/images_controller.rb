@@ -4,10 +4,14 @@ class ImagesController < ApplicationController
   # GET /images or /images.json
   def index
     @images = Image.all
+    render json: @image
+
   end
 
   # GET /images/1 or /images/1.json
   def show
+    @image = Image.find(params[:id])
+    render json: @image
   end
 
   # GET /images/new
@@ -25,10 +29,10 @@ class ImagesController < ApplicationController
 
     respond_to do |format|
       if @image.save
-        format.html { redirect_to @image, notice: "Image was successfully created." }
+        #format.html { redirect_to @image, notice: "Image was successfully created." }
         format.json { render :show, status: :created, location: @image }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        #format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
@@ -38,10 +42,10 @@ class ImagesController < ApplicationController
   def update
     respond_to do |format|
       if @image.update(image_params)
-        format.html { redirect_to @image, notice: "Image was successfully updated." }
+        #format.html { redirect_to @image, notice: "Image was successfully updated." }
         format.json { render :show, status: :ok, location: @image }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        #format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
@@ -51,7 +55,7 @@ class ImagesController < ApplicationController
   def destroy
     @image.destroy
     respond_to do |format|
-      format.html { redirect_to images_url, notice: "Image was successfully destroyed." }
+      #format.html { redirect_to images_url, notice: "Image was successfully destroyed." }
       format.json { head :no_content }
     end
   end
