@@ -1,5 +1,5 @@
 class Api::V2::CompaniesController < ApplicationController
-   before_action :set_category, only: %i[ show edit update destroy ]
+  before_action :set_category, only: %i[ show edit update destroy ]
   
     # GET /campany or /categories.json
     def index

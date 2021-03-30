@@ -1,5 +1,5 @@
 class Api::V2::ImagesController < ApplicationController
- # before_action :set_image, only: %i[ show edit update destroy ]
+ before_action :set_image, only: %i[ show edit update destroy ]
 
   # GET /images or /images.json
   def index

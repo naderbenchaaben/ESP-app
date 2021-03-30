@@ -1,6 +1,6 @@
 class Api::V2::RatingsController < ApplicationController
 
-    before_action :set_rating, only: %i[create show edit update destroy ]
+   before_action :set_rating, only: %i[create show edit update destroy ]
   
     # GET /orders or /orders.json
     def index

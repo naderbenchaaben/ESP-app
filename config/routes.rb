@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
   
+  namespace :admin do
+      resources :users
+      resources :orders
+      resources :images
+      resources :ratings
+      resources :companies
+      resources :categories
+      resources :products
+
+      root to: "users#index"
+    end
   devise_for :users, controllers: { registrations: 'registrations' }
   namespace :api do
     namespace :v1 do
