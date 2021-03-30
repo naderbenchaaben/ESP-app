@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/1 or /orders/1.json
   def show
-    @order = Image.find(params[:id])
+    @order = Order.find(params[:id])
     render json: @order
   end
 
@@ -25,39 +25,42 @@ class OrdersController < ApplicationController
 
   # POST /orders or /orders.json
   def create
-    @order = Order.new(order_params)
+    @order = set_order
+  respond_to :json
 
-    respond_to do |format|
-      if @order.save
-        #format.html { redirect_to @order, notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
-      else
-        #format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+      
+        if @order.save
+          #format.html { redirect_to @category, notice: "Category was successfully created." }
+          render json:@order, status: :ok
+        else
+          #format.html { render :new, status: :unprocessable_entity }
+          render json: {error: @orders.errors.messages }
+        
       end
-    end
   end
 
   # PATCH/PUT /orders/1 or /orders/1.json
   def update
-    respond_to do |format|
-      if @order.update(order_params)
-        #format.html { redirect_to @order, notice: "Order was successfully updated." }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        #format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+    @order = set_order
+    if @order.update(company_params)
+      #format.html { redirect_to @category, notice: "Category was successfully updated." }
+      render json:@order, status: :ok
+    else
+      #format.html { render :edit, status: :unprocessable_entity }
+      render json: {error: @orders.errors.messages }
+  
+  end
   end
 
   # DELETE /orders/1 or /orders/1.json
   def destroy
-    @order.destroy
-    respond_to do |format|
-      #format.html { redirect_to orders_url, notice: "Order was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    @order = set_order
+       if @company.destroy  
+      head :no_content
+       # format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
+      else
+        render json: {error: @orders.error.messege }
+      end
   end
 
   private

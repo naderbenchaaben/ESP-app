@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class Api::V2::CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories or /categories.json
@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1 or /categories/1.json
   def show
-    @category = Category.find(params[:id])
+    @category = set_category
     render json: @category
    end
 
@@ -26,37 +26,42 @@ class CategoriesController < ApplicationController
   def create
     @category = Category.new(category_params)
 
-    respond_to do |format|
+    respond_to :json
       if @category.save
         #format.html { redirect_to @category, notice: "Category was successfully created." }
-        format.json { render :show, status: :created, location: @category }
+       render json:@category
       else
         #format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
+        render json: {error: @categories.errors.messages }
+      
     end
   end
 
   # PATCH/PUT /categories/1 or /categories/1.json
   def update
-    respond_to do |format|
+    
       if @category.update(category_params)
         #format.html { redirect_to @category, notice: "Category was successfully updated." }
-        format.json { render :show, status: :ok, location: @category }
+        render json:@category, status: :ok
       else
         #format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
-      end
+        render json: {error: @categories.errors.messages }
+     
     end
   end
 
   # DELETE /categories/1 or /categories/1.json
   def destroy
-    @category.destroy
-    respond_to do |format|
+    @category = set_category
+    if @category.destroy
+     head :no_content 
+    
+    else
+      render json: {error: @categories.error.messege }
+
      # format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
-      format.json { head :no_content }
     end
+    
   end
 
   private
