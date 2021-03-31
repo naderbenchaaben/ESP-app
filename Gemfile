@@ -25,6 +25,8 @@ gem 'administrate'
 gem 'devise'
 gem 'jwt'
 gem 'rack-cors'
+
+gem 'fix-db-schema-conflicts'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

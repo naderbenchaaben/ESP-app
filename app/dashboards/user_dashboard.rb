@@ -16,14 +16,8 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at: Field::DateTime,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    if_Topadmin: Field::Boolean,
-    if_client: Field::Boolean,
-    if_admin: Field::Boolean,
     firstname: Field::String,
     lastname: Field::String,
-    companyname: Field::String,
-    fieldofbusiness: Field::String,
-    city: Field::String,
     telnum: Field::Number,
   }.freeze
 
@@ -50,14 +44,8 @@ class UserDashboard < Administrate::BaseDashboard
     remember_created_at
     created_at
     updated_at
-    if_Topadmin
-    if_client
-    if_admin
     firstname
     lastname
-    companyname
-    fieldofbusiness
-    city
     telnum
   ].freeze
 
@@ -70,14 +58,8 @@ class UserDashboard < Administrate::BaseDashboard
     reset_password_token
     reset_password_sent_at
     remember_created_at
-    if_Topadmin
-    if_client
-    if_admin
     firstname
     lastname
-    companyname
-    fieldofbusiness
-    city
     telnum
   ].freeze
 
