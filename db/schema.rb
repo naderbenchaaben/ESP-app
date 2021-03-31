@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_31_050539) do
+ActiveRecord::Schema.define(version: 2021_03_31_051114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
+    t.integer "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,6 +36,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_050539) do
   end
 
   create_table "orders", force: :cascade do |t|
+    t.integer "company_id"
     t.datetime "created_at", precision: 6, null: false
     t.string "order_type"
     t.float "total_price"
@@ -43,6 +45,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_050539) do
 
   create_table "products", force: :cascade do |t|
     t.integer "available_quantity"
+    t.integer "category_id"
     t.datetime "created_at", precision: 6, null: false
     t.string "description"
     t.float "price"
@@ -78,4 +81,7 @@ ActiveRecord::Schema.define(version: 2021_03_31_050539) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "categories", "companies"
+  add_foreign_key "orders", "companies"
+  add_foreign_key "products", "categories"
 end
