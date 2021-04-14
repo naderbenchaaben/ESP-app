@@ -1,25 +1,33 @@
 class RegistrationsController < Devise::RegistrationsController
    
- # respond_to :json
+
+ 
+
+
   def create
-    byebug
-      @user = User.new(sign_up_params)
-      if @user.save
-#render json: @user
-        respond_to do |format|
- # format.html { redirect_to(@form, notice: "Form created successfully") }
-            format.json { render json: {message: "Form created successfully"} }
-        end
-          else
-        #render json: { errors: @user.errors }
-        respond_to do |format|
-         # format.html { render 'new' }
-          format.json { render json: {errors: @user.errors}}
-        end
+
+    user = User.create!(
+      email: params[:user][:email],
+      password: params[:user][:password],
+      password_confirmation: params[:user][:password_confirmation],
+      lastname: params[:user][:lastname],
+      firstname: params[:user][:firstname],
+      companyname: params[:user][:companyname],
+      telnum: params[:user][:telnum],
+      fieldofbusiness: params[:user][:fieldofbusiness],
+      city: params[:user][:city],
+      if_admin: params[:user][:if_admin],
+      if_Topadmin: params[:user][:if_Topadmin],
+      if_client: params[:user][:if_client]
+    )
+
+    if user
+      render json:{
+        status: :created,
+        user: user
+      }
+    else
+      render json: { status: 500 }
     end
   end
-  private
-  def sign_up_params
-      params.permit(:email, :password, :password_confirmation, :firstname, :lastname, :companyname, :fieldofbusiness, :city )
-    end
-  end
+end
