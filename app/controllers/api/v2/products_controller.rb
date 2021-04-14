@@ -24,17 +24,17 @@ class Api::V2::ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    @product = Product.new(product_params)
+    product = Product.new(product_params)
     respond_to :json
     
-      if @product.save
+      if product.save
         #format.html { redirect_to @order, notice: "Order was successfully created." }
        # render json: {  :show, status: :created, location: @rating}
-       render json:@product
+       render json:product
       else
         #format.html { render :new, status: :unprocessable_entity }
         #format.json { render json: @rating.errors, status: :unprocessable_entity }
-        render json: {error: @products.errors.messages }
+        render json: {error: products.errors.messages }
       
     end
   end
@@ -71,6 +71,6 @@ class Api::V2::ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:product_name, :ref_product, :price, :description, :available_quantity )
+      params.permit(:product_name, :ref_product, :price, :description, :available_quantity )
     end
 end
