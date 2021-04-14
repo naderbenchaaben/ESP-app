@@ -1,5 +1,5 @@
 class Api::V2::ProductsController < ApplicationController
- before_action :set_product, only: %i[ show edit update destroy ]
+ before_action :set_product, only: %i[ create show edit update destroy ]
 
   # GET /products or /products.json
   def index
@@ -71,6 +71,6 @@ class Api::V2::ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:product_name, :ref_product, :price, :description, :available_quantity )
+      params.require(:product).permit(:product_name, :ref_product, :price, :shortDes, :description, :available_quantity )
     end
 end
