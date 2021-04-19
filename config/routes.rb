@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   namespace :api do
     namespace :v1 do
+      resources :sessions, only: [:create]
+      delete :logged, to: "sessions#logout"
+      get :logged_in, to: "sessions#logged_in"
       get 'post/index'
       post :auth, to: 'authentication#create'
       get  '/auth' => 'authentication#fetch'
