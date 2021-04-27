@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :sessions, only: [:create]
-      delete :logged, to: "sessions#logout"
+      delete :logout, to: "sessions#logout"
       get :logged_in, to: "sessions#logged_in"
       get 'post/index'
       post :auth, to: 'authentication#create'
