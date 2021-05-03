@@ -41,7 +41,7 @@ class Api::V2::ImagesController < ApplicationController
 
   # PATCH/PUT /images/1 or /images/1.json
   def update
-    @catagory = set_image
+    @image = set_image
       if @image.update(image_params)
         #format.html { redirect_to @image, notice: "Image was successfully updated." }
         render json:@image, status: :ok

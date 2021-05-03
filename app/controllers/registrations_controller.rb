@@ -30,4 +30,6 @@ class RegistrationsController < Devise::RegistrationsController
       render json: { status: 500 }
     end
   end
+
+  
 end
