@@ -11,15 +11,7 @@ class Api::V2::ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    product = Product.create!(
-      #email: params[:user][:email],
-      product_name: params[:product][:product_name],
-      ref_product: params[:product][:ref_product],
-      price: params[:product][:price],
-      shortDesc: params[:product] [:shortDesc],
-      description: params[:product][:description],
-      available_quantity: params[:product][:available_quantity]
-    )
+    product = Product.create(product_params)
     if product
       render json:{
         status: :created,
@@ -54,5 +46,8 @@ class Api::V2::ProductsController < ApplicationController
     private
       def set_product
       product = Product.find(params[:id])
+    end
+    def product_params
+      params.require(:product).permit(:product_name, :ref_product, :price, :description, :shortDesc, :available_quantity, images: [])
     end
 end
