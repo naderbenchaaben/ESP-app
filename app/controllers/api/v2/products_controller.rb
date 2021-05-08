@@ -32,7 +32,7 @@ class Api::V2::ProductsController < ApplicationController
     )
    end
    def destroy
-    product = set_category
+    product = set_product
     if product.destroy
      head :no_content 
     
