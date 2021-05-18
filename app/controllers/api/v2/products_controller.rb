@@ -23,12 +23,7 @@ class Api::V2::ProductsController < ApplicationController
   end
    def update
     product =Product.update(
-      product_name: params[:product][:product_name],
-      ref_product: params[:product][:ref_product],
-      price: params[:product][:price],
-      shortDesc: params[:product] [:shortDesc],
-      description: params[:product][:description],
-      available_quantity: params[:product][:available_quantity]
+      product_params
     )
    end
    def destroy
