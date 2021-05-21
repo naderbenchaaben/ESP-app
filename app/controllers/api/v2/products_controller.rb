@@ -6,7 +6,12 @@ class Api::V2::ProductsController < ApplicationController
   end
   
   def show 
-    
+    product = set_product
+    if product 
+      render json: {
+        product: product
+      }
+    end
   end
 
   # POST /products or /products.json
