@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: dbjxtaozm
+  api_key: '433625596175323'
+  api_secret: Bpa5RiADtiPtliJ-H06PbwYhlKI
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dbjxtaozm
+  api_key: '433625596175323'
+  api_secret: Bpa5RiADtiPtliJ-H06PbwYhlKI
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dbjxtaozm
+  api_key: '433625596175323'
+  api_secret: Bpa5RiADtiPtliJ-H06PbwYhlKI
+  enhance_image_tag: true
+  static_file_support: false

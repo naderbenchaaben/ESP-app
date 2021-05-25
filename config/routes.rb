@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       resources :orders
       resources :products
       resources :companies, param: :user_id
+      get '/user/:city', to: 'users#show_costomer'
       #get "/company/:user_id", to: "companies#showcomp" , as: 'companyy'
       resources :ratings
 
