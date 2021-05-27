@@ -6,11 +6,17 @@ class Api::V2::UsersController < ApplicationController
         render json: {
             client_list: user
            
-        }else
+         }else
             render json: {
                 client_list: error
             
         }
+        end
     end
+    
+    def show
+       user = User.find(params[:id])
+       render json: user 
     end
-    end
+    
+end

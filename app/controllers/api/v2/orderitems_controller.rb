@@ -1,4 +1,4 @@
-class Api::V3::OrderitemsController < ApplicationController
+class Api::V2::OrderitemsController < ApplicationController
     before_action :set_order, only: %i[ show edit update destroy ]
   
     # GET /orders or /orders.json
@@ -13,6 +13,19 @@ class Api::V3::OrderitemsController < ApplicationController
       @orderItem = Order.find(params[:id])
       render json: @orderItem
     end
+    def show_orderitems
+      order_Item = OrderItem.where("order_id = ?  ",params[:order_id]   )
+      if order_Item 
+          render json: {
+              order_Item_list: order_Item
+             
+          }else
+              render json: {
+                 orderItem_list: error
+              
+          }
+      end
+      end
   
     # GET /orders/new
     def new

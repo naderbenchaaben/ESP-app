@@ -8,9 +8,9 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     credentials: true #allow you to pass the cookie from fontend to backkend app
   end
   allow do
-    origins "http://localhost:19006"
+    origins "http://192.168.1.5:19000"
     resource "*", headers: :any, methods: [ :get, :post, :put, :patch, :delete, :options, :head ],
-    credentials: true #allow you to pass the cookie from fontend to backkend app
+    credentials: false #allow you to pass the cookie from fontend to backkend app
   end
   
   #allow do

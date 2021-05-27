@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_25_101935) do
+ActiveRecord::Schema.define(version: 2021_06_16_154645) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "company_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "product_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -26,6 +34,12 @@ ActiveRecord::Schema.define(version: 2021_05_25_101935) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "fieldofbusiness"
+  end
+
+  create_table "fieldofbusinesses", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "images", force: :cascade do |t|
@@ -65,13 +79,15 @@ ActiveRecord::Schema.define(version: 2021_05_25_101935) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "category_id"
-    t.string "shortDesc"
+    t.integer "company_id"
   end
 
   create_table "ratings", force: :cascade do |t|
     t.integer "score"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.integer "product_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -96,9 +112,15 @@ ActiveRecord::Schema.define(version: 2021_05_25_101935) do
   end
 
   add_foreign_key "categories", "companies"
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "users"
   add_foreign_key "companies", "users"
+  add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "companies"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "companies"
+  add_foreign_key "ratings", "products"
+  add_foreign_key "ratings", "users"
 end

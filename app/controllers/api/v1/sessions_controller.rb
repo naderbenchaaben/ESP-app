@@ -1,7 +1,7 @@
 class Api::V1::SessionsController < ApplicationController
     
     def create
-        user = User.find_by(email: params["user"]["email"])#.try(:authenticate, params["password"])
+        user = User.find_by(email: params["user"]["email"])
        
         if user.valid_password?(params["user"]["password"])
             session[:user_id] = user.id 
