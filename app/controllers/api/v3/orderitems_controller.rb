@@ -25,7 +25,7 @@ class Api::V3::OrderitemsController < ApplicationController
   
     # POST /orders or /orders.json
     def create
-      @OrderItem = set_order
+      @orderItem = OrderItem.create(orderItem_params)
     respond_to :json
   
         
@@ -70,8 +70,8 @@ class Api::V3::OrderitemsController < ApplicationController
       end
   
       # Only allow a list of trusted parameters through.
-      def order_params
-        params.require(:orderItem).permit(:order_type, :order_id, :product_id, :quantity, :order_item_price)
+      def orderItem_params
+        params.permit(:order_id, :product_id, :quantity, :order_item_price)
       end
   end
   

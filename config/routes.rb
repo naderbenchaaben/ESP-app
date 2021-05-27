@@ -27,11 +27,21 @@ Rails.application.routes.draw do
       resources :images
       resources :categories
       resources :orders
+      get '/order/:company_id', to: 'orders#show_orders'
       resources :products
       resources :companies, param: :user_id
-      get '/user/:city', to: 'users#show_costomer'
+      get '/users/:city', to: 'users#show_costomer'
+      get '/user/:id' , to: 'users#show'
+      get 'oldusers/:company_id' , to: 'users#oldusers'
       #get "/company/:user_id", to: "companies#showcomp" , as: 'companyy'
       resources :ratings
+
+    end
+    namespace :v3 do
+     
+      resources :orders
+      resources :orderitems
+      
 
     end
   

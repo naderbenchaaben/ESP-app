@@ -13,6 +13,20 @@ class Api::V2::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     render json: @order
   end
+  def show_orders
+    orders = Order.where("company_id = ?  ",params[:company_id]   )
+    if orders 
+        render json: {
+            order_list: orders
+           
+        }else
+            render json: {
+               order_list: error
+            
+        }
+    end
+    end
+    
 
   # GET /orders/new
   def new
@@ -55,7 +69,7 @@ class Api::V2::OrdersController < ApplicationController
   # DELETE /orders/1 or /orders/1.json
   def destroy
     @order = set_order
-       if @company.destroy  
+       if @order.destroy  
       head :no_content
        # format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
       else
@@ -71,6 +85,6 @@ class Api::V2::OrdersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def order_params
-      params.require(:order).permit(:order_type)
+      params.require(:order).permit(:order_type, :total_price, :company_id, :stage, :order_shipping_address, :order_pick_up_date, :order_pick_up_time, :user_id)
     end
 end

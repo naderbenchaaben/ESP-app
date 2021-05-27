@@ -13,6 +13,7 @@ class Api::V3::OrdersController < ApplicationController
       @order = Order.find(params[:id])
       render json: @order
     end
+    
   
     # GET /orders/new
     def new
@@ -25,7 +26,7 @@ class Api::V3::OrdersController < ApplicationController
   
     # POST /orders or /orders.json
     def create
-      @order = set_order
+      @order = Order.create(order_params)
     respond_to :json
   
         
@@ -55,7 +56,7 @@ class Api::V3::OrdersController < ApplicationController
     # DELETE /orders/1 or /orders/1.json
     def destroy
       @order = set_order
-         if @company.destroy  
+         if @order.destroy  
         head :no_content
          # format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
         else
