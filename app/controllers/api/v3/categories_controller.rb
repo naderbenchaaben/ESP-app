@@ -1,4 +1,4 @@
-class Api::V2::CategoriesController < ApplicationController
+class Api::V3::CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show edit update destroy ]
 
   # GET /categories or /categories.json
@@ -8,49 +8,35 @@ class Api::V2::CategoriesController < ApplicationController
   end
 
   # GET /categories/1 or /categories/1.json
-  def show
-  
-   end
-
+ 
   # GET /categories/new
   def new
    
   end
 
-  # GET /categories/1/edit
+  def show_categories
+    category = Category.where("company_id = ?  ",params[:company_id]   )
+    if category
+        render json: {
+            categories_list: category
+           
+        }else
+            render json: {
+              categories_list: error
+            
+        }
+    end
+    end
   
 
   # POST /categories or /categories.json
-  def create
-    category = Category.create(category_params)
 
-   
-      if category
-        render json:{
-        status: :created,
-        category: category}
-      else
-        render json: { status: 500 }
-    end
-  end
 
   # PATCH/PUT /categories/1 or /categories/1.json
-  def update
-    category= Category.find(params[:id])
-    category.update(category_params)
-      
-  end
+  
 
   # DELETE /categories/1 or /categories/1.json
-  def destroy
-    category = set_category
-   if category.destroy
-    head :no_content
-   else
-     render json: { status: 500 }
-    end
-    
-  end
+ 
 
   private
     # Use callbacks to share common setup or constraints between actions.

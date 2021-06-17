@@ -27,9 +27,15 @@ class Api::V2::ProductsController < ApplicationController
     end
   end
    def update
-    product =Product.update(
+    product =Product.find(params[:id])
+    if product.update(
       product_params
     )
+    render json:{
+      status: :updated,
+      product: product
+    }
+  end
    end
    def destroy
     product = set_product
@@ -48,6 +54,6 @@ class Api::V2::ProductsController < ApplicationController
       product = Product.find(params[:id])
     end
     def product_params
-      params.require(:product).permit(:product_name, :ref_product, :price, :description, :shortDesc, :available_quantity, images: [])
+      params.require(:product).permit(:product_name, :ref_product, :price, :description,  :available_quantity, images: [])
     end
 end

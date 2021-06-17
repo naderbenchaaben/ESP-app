@@ -35,7 +35,21 @@ Rails.application.routes.draw do
       get 'oldusers/:company_id' , to: 'users#oldusers'
       #get "/company/:user_id", to: "companies#showcomp" , as: 'companyy'
       resources :ratings
-
+      resources :orderitems
+      get 'orderitem/:order_id', to: 'orderitems#show_orderitems'
+    end
+    namespace :v3 do
+     
+      resources :orders
+      resources :companies
+      get 'products/:company_id' , to: 'products#show_products'
+      resources :categories
+      get 'category/:company_id' , to: 'categories#show_categories'
+      get 'comp/:id' , to: 'companies#getcompany'
+      resources :fieldofbusiness
+      resources :products
+      get 'avgrating/:product_id' , to: 'ratings#avgrating'
+      get '/comment/:product_id', to: 'comments#show_comments'
     end
     namespace :v3 do
      

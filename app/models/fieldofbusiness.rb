@@ -1,0 +1,2 @@
+class Fieldofbusiness < ApplicationRecord
+end
