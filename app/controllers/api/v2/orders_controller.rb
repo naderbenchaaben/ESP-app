@@ -26,10 +26,13 @@ class Api::V2::OrdersController < ApplicationController
         }
     end
     end
+<<<<<<< HEAD
 
    
 
     
+=======
+>>>>>>> bc8c08c94c2131aabe9e2e636a2a398990f1110a
     
 
   # GET /orders/new

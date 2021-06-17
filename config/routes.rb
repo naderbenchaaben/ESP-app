@@ -51,6 +51,13 @@ Rails.application.routes.draw do
       get 'avgrating/:product_id' , to: 'ratings#avgrating'
       get '/comment/:product_id', to: 'comments#show_comments'
     end
+    namespace :v3 do
+     
+      resources :orders
+      resources :orderitems
+      
+
+    end
   
   end
 end
