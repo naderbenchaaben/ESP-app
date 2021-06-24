@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_16_154645) do
+ActiveRecord::Schema.define(version: 2021_06_23_120936) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 2021_06_16_154645) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "fieldofbusiness"
+    t.string "image"
   end
 
   create_table "fieldofbusinesses", force: :cascade do |t|
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 2021_06_16_154645) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "category_id"
     t.integer "company_id"
+    t.string "image"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -107,6 +109,7 @@ ActiveRecord::Schema.define(version: 2021_06_16_154645) do
     t.boolean "if_admin", default: false
     t.boolean "if_Topadmin", default: false
     t.boolean "if_client", default: false
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

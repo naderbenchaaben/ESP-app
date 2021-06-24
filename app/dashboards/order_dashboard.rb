@@ -8,13 +8,18 @@ class OrderDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    user: Field::BelongsTo,
-    products: Field::HasMany,
+    orderItem: Field::HasMany,
     id: Field::Number,
     order_type: Field::String,
     total_price: Field::Number.with_options(decimals: 2),
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    company_id: Field::Number,
+    stage: Field::String,
+    order_shipping_address: Field::String,
+    order_pick_up_date: Field::Date,
+    order_pick_up_time: Field::Time,
+    user_id: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -23,32 +28,42 @@ class OrderDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    user
-    products
+    orderItem
     id
     order_type
+    total_price
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-    user
-    products
+    orderItem
     id
     order_type
     total_price
     created_at
     updated_at
+    company_id
+    stage
+    order_shipping_address
+    order_pick_up_date
+    order_pick_up_time
+    user_id
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    user
-    products
+    orderItem
     order_type
     total_price
+    company_id
+    stage
+    order_shipping_address
+    order_pick_up_date
+    order_pick_up_time
+    user_id
   ].freeze
 
   # COLLECTION_FILTERS

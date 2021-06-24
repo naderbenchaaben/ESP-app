@@ -40,8 +40,22 @@ class Api::V2::CompaniesController < ApplicationController
     end
   
     # PATCH/PUT /categories/1 or /categories/1.json
-    
-  
+    def uploadimage 
+      img = Cloudinary::Uploader.upload(params[:image])
+      company = Company.find(params[:id])
+      if company.update(
+       
+        image: img["url"]
+      )
+      render json:{
+        status: :updated,
+        company: :company
+      }
+    else
+      render json: {status: 550}
+    end 
+  end
+      
     # DELETE /categories/1 or /categories/1.json
     def destroy
       @company = set_company

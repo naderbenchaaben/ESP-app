@@ -13,6 +13,7 @@ class Api::V2::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     render json: @order
   end
+  
   def show_orders
     orders = Order.where("company_id = ?  ",params[:company_id]   )
     if orders 
@@ -25,14 +26,8 @@ class Api::V2::OrdersController < ApplicationController
             
         }
     end
+
     end
-<<<<<<< HEAD
-
-   
-
-    
-=======
->>>>>>> bc8c08c94c2131aabe9e2e636a2a398990f1110a
     
 
   # GET /orders/new

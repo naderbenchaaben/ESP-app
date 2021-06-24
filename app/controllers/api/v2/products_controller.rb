@@ -16,7 +16,17 @@ class Api::V2::ProductsController < ApplicationController
 
   # POST /products or /products.json
   def create
-    product = Product.create(product_params)
+    img = Cloudinary::Uploader.upload(params[:image])
+    
+    product = Product.create!(
+    image: img["url"],
+    product_name: params[:product_name],
+    ref_product: params[:ref_product],
+    price: params[:price],
+    description: params[:description],
+    available_quantity: params[:available_quantity]  
+    
+    )
     if product
       render json:{
         status: :created,
@@ -54,6 +64,6 @@ class Api::V2::ProductsController < ApplicationController
       product = Product.find(params[:id])
     end
     def product_params
-      params.require(:product).permit(:product_name, :ref_product, :price, :description,  :available_quantity, images: [])
+      params.permit(:product_name, :ref_product, :price, :description,  :available_quantity, :image )
     end
 end
