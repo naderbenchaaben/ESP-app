@@ -71,7 +71,7 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     companies
     email
-   
+    encrypted_password
     reset_password_token
     reset_password_sent_at
     remember_created_at

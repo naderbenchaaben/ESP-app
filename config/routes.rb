@@ -30,8 +30,10 @@ Rails.application.routes.draw do
     namespace :v2 do
       resources :images
       resources :categories
+      get '/categoryC/:company_id', to: 'categories#show_category'
       resources :orders
       get '/order/:company_id', to: 'orders#show_orders'
+      get '/p/:company_id', to: 'products#show_product'
       resources :products
       resources :companies, param: :user_id
       put '/userimage/:id' ,to: 'users#uploadimage'
@@ -39,6 +41,7 @@ Rails.application.routes.draw do
       get '/users/:city', to: 'users#show_costomer'
       get '/user/:id' , to: 'users#show'
       get 'oldusers/:company_id' , to: 'users#oldusers'
+      get 'avgscore/:product_id' , to: 'ratings#avgrating'
       #get "/company/:user_id", to: "companies#showcomp" , as: 'companyy'
       resources :ratings
       resources :orderitems

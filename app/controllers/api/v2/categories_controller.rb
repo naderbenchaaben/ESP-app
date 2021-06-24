@@ -6,6 +6,18 @@ class Api::V2::CategoriesController < ApplicationController
     categories = Category.all
     render json:categories
   end
+  def show_category
+    categories = Category.where("company_id = ?  ",params[:company_id]   )
+    if categories
+      render json: {
+        categories: categories
+      }else
+        render json: {
+          categories: error
+        }
+      
+    end
+  end
 
   # GET /categories/1 or /categories/1.json
   def show
@@ -60,6 +72,6 @@ class Api::V2::CategoriesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def category_params
-      params.require(:category).permit(:category_name)
+      params.require(:category).permit(:category_name, :company_id)
     end
 end

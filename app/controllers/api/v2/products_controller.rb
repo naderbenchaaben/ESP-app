@@ -4,6 +4,18 @@ class Api::V2::ProductsController < ApplicationController
     products = Product.all
     render json:products
   end
+  def show_product
+    products = Product.where("company_id = ?  ",params[:company_id]   )
+    if products
+      render json: {
+        product: products
+      }else
+        render json: {
+          product: error
+        }
+      
+    end
+  end
   
   def show 
     product = set_product
@@ -24,7 +36,8 @@ class Api::V2::ProductsController < ApplicationController
     ref_product: params[:ref_product],
     price: params[:price],
     description: params[:description],
-    available_quantity: params[:available_quantity]  
+    available_quantity: params[:available_quantity],
+    company_id: params[:company_id]
     
     )
     if product
