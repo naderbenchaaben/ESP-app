@@ -13,6 +13,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     category_name: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    company_id: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -35,6 +36,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     category_name
     created_at
     updated_at
+    company_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -43,6 +45,7 @@ class CategoryDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     products
     category_name
+    company_id
   ].freeze
 
   # COLLECTION_FILTERS

@@ -8,6 +8,7 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    companies: Field::HasMany,
     id: Field::Number,
     email: Field::String,
     encrypted_password: Field::String,
@@ -19,6 +20,13 @@ class UserDashboard < Administrate::BaseDashboard
     firstname: Field::String,
     lastname: Field::String,
     telnum: Field::Number,
+    companyname: Field::String,
+    fieldofbusiness: Field::String,
+    city: Field::String,
+    if_admin: Field::Boolean,
+    if_Topadmin: Field::Boolean,
+    if_client: Field::Boolean,
+    image: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,15 +35,16 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
+    companies
     id
     email
     encrypted_password
-    reset_password_token
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
+    companies
     id
     email
     encrypted_password
@@ -47,20 +56,35 @@ class UserDashboard < Administrate::BaseDashboard
     firstname
     lastname
     telnum
+    companyname
+    fieldofbusiness
+    city
+    if_admin
+    if_Topadmin
+    if_client
+    image
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
+    companies
     email
-    encrypted_password
+   
     reset_password_token
     reset_password_sent_at
     remember_created_at
     firstname
     lastname
     telnum
+    companyname
+    fieldofbusiness
+    city
+    if_admin
+    if_Topadmin
+    if_client
+    image
   ].freeze
 
   # COLLECTION_FILTERS

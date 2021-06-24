@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
   
+  
   namespace :admin do
       resources :users
       resources :orders
-      resources :images
       resources :ratings
       resources :companies
-      resources :categories
       resources :products
+      resources :categories
+      resources :comments
+      resources :fieldofbusinesses
+      resources :images
+      resources :order_items
 
       root to: "users#index"
     end
@@ -30,12 +34,15 @@ Rails.application.routes.draw do
       get '/order/:company_id', to: 'orders#show_orders'
       resources :products
       resources :companies, param: :user_id
+      put '/userimage/:id' ,to: 'users#uploadimage'
+      put '/companyimage/:id' ,to: 'companies#uploadimage'
       get '/users/:city', to: 'users#show_costomer'
       get '/user/:id' , to: 'users#show'
       get 'oldusers/:company_id' , to: 'users#oldusers'
       #get "/company/:user_id", to: "companies#showcomp" , as: 'companyy'
       resources :ratings
       resources :orderitems
+      resources :fieldofbusiness
       get 'orderitem/:order_id', to: 'orderitems#show_orderitems'
     end
     namespace :v3 do

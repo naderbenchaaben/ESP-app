@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class ProductDashboard < Administrate::BaseDashboard
+class OrderItemDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,17 +8,13 @@ class ProductDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    order: Field::BelongsTo,
     id: Field::Number,
-    product_name: Field::String,
-    ref_product: Field::String,
-    price: Field::Number.with_options(decimals: 2),
-    description: Field::String,
-    available_quantity: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    category_id: Field::Number,
-    company_id: Field::Number,
-    image: Field::String,
+    product_id: Field::Number,
+    quantity: Field::Number,
+    order_item_price: Field::Number.with_options(decimals: 2),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -27,40 +23,32 @@ class ProductDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
+    order
     id
-    product_name
-    ref_product
-    price
+    created_at
+    updated_at
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
+    order
     id
-    product_name
-    ref_product
-    price
-    description
-    available_quantity
     created_at
     updated_at
-    category_id
-    company_id
-    image
+    product_id
+    quantity
+    order_item_price
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    product_name
-    ref_product
-    price
-    description
-    available_quantity
-    category_id
-    company_id
-    image
+    order
+    product_id
+    quantity
+    order_item_price
   ].freeze
 
   # COLLECTION_FILTERS
@@ -75,10 +63,10 @@ class ProductDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how products are displayed
+  # Overwrite this method to customize how order items are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(product)
-  #   "Product ##{product.id}"
+  # def display_resource(order_item)
+  #   "OrderItem ##{order_item.id}"
   # end
 end

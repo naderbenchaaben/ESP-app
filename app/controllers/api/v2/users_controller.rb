@@ -13,10 +13,21 @@ class Api::V2::UsersController < ApplicationController
         }
         end
     end
-<<<<<<< HEAD
-    
-=======
->>>>>>> bc8c08c94c2131aabe9e2e636a2a398990f1110a
+    def uploadimageuser 
+        img = Cloudinary::Uploader.upload(params[:image])
+        user = User.find(params[:id])
+        if user.update(
+         
+          image: img["url"]
+        )
+        render json:{
+          status: :updated,
+          user: :user
+        }
+      else
+        render json: {status: 550}
+      end 
+    end
     def show
        user = User.find(params[:id])
        render json: user 
