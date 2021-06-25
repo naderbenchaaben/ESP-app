@@ -5,8 +5,8 @@ class Api::V3::ProductsController < ApplicationController
         render json:products
       end
       
-      def show 
-        product = set_product
+      def getprod 
+        product = Product.find(params[:id])
         if product 
           render json: {
             product: product

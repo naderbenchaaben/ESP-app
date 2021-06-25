@@ -13,6 +13,19 @@ class Api::V2::UsersController < ApplicationController
         }
         end
     end
+    def get_customer
+      user = User.where("if_client = ? ", true )
+      if user 
+          render json: {
+              client_list: user
+             
+           }else
+              render json: {
+                  client_list: error
+              
+          }
+          end
+      end
     def uploadimageuser 
         img = Cloudinary::Uploader.upload(params[:image])
         user = User.find(params[:id])

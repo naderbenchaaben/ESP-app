@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   
+  
   namespace :admin do
       resources :users
       resources :orders
@@ -34,11 +35,13 @@ Rails.application.routes.draw do
       resources :orders
       get '/order/:company_id', to: 'orders#show_orders'
       get '/p/:company_id', to: 'products#show_product'
+      
       resources :products
       resources :companies, param: :user_id
       put '/userimage/:id' ,to: 'users#uploadimage'
       put '/companyimage/:id' ,to: 'companies#uploadimage'
       get '/users/:city', to: 'users#show_costomer'
+      get '/customer', to: 'users#get_customer'
       get '/user/:id' , to: 'users#show'
       get 'oldusers/:company_id' , to: 'users#oldusers'
       get 'avgscore/:product_id' , to: 'ratings#avgrating'
@@ -47,6 +50,8 @@ Rails.application.routes.draw do
       resources :orderitems
       resources :fieldofbusiness
       get 'orderitem/:order_id', to: 'orderitems#show_orderitems'
+      get '/comment/:product_id', to: 'comments#show_comments'
+
     end
     namespace :v3 do
      
@@ -58,6 +63,7 @@ Rails.application.routes.draw do
       get 'comp/:id' , to: 'companies#getcompany'
       resources :fieldofbusiness
       resources :products
+      get '/prod/:id', to: 'products#getprod'
       get 'avgrating/:product_id' , to: 'ratings#avgrating'
       get '/comment/:product_id', to: 'comments#show_comments'
     end
