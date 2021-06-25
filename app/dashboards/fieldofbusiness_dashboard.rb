@@ -12,6 +12,7 @@ class FieldofbusinessDashboard < Administrate::BaseDashboard
     name: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    image: Field::String,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -33,6 +34,7 @@ class FieldofbusinessDashboard < Administrate::BaseDashboard
     name
     created_at
     updated_at
+    image
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -40,6 +42,7 @@ class FieldofbusinessDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
     name
+    image
   ].freeze
 
   # COLLECTION_FILTERS

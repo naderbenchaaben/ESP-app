@@ -13,6 +13,19 @@ class Api::V3::OrdersController < ApplicationController
       @order = Order.find(params[:id])
       render json: @order
     end
+    def show_orders
+      orders = Order.where("user_id = ?  ",params[:user_id]   )
+      if orders
+          render json: {
+            orders_list: orders
+             
+          }else
+              render json: {
+                orders_list: error
+              
+          }
+      end
+      end 
     
   
     # GET /orders/new

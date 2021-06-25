@@ -16,9 +16,9 @@ class ProductDashboard < Administrate::BaseDashboard
     available_quantity: Field::Number,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    category_id: Field::Number,
     company_id: Field::Number,
     image: Field::String,
+    category_id: Field::Number,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -44,9 +44,9 @@ class ProductDashboard < Administrate::BaseDashboard
     available_quantity
     created_at
     updated_at
-    category_id
     company_id
     image
+    category_id
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -58,9 +58,9 @@ class ProductDashboard < Administrate::BaseDashboard
     price
     description
     available_quantity
-    category_id
     company_id
     image
+    category_id
   ].freeze
 
   # COLLECTION_FILTERS
