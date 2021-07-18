@@ -28,7 +28,17 @@ class Api::V2::OrdersController < ApplicationController
     end
 
     end
-    
+    def updatestage 
+      order = Order.find(params[:id])
+      if order.update(
+        stage: params[:stage]
+      )
+      render json:{
+        status: :updated,
+        order: :order 
+      }else render json: {status: 500}
+      end
+    end
 
   # GET /orders/new
   def new

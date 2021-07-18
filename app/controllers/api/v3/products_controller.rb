@@ -13,6 +13,7 @@ class Api::V3::ProductsController < ApplicationController
           }
         end
       end
+      
       def show_products
         product = Product.where("company_id = ?  ",params[:company_id]   )
         if product
@@ -25,7 +26,19 @@ class Api::V3::ProductsController < ApplicationController
                 
             }
         end
-        end   
+        end 
+
+        def countproducts
+        product = Product.where("company_id= ?", params[:company_id])
+          nbproduct = product.count
+          if nbproduct
+          render json:{
+            nbproduct: nbproduct
+          }else{
+            nbproduct: error
+          }
+          end
+        end  
       end
         private
           def set_product

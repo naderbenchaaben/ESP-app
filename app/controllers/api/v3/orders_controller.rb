@@ -40,7 +40,7 @@ class Api::V3::OrdersController < ApplicationController
     # POST /orders or /orders.json
     def create
       @order = Order.create(order_params)
-    respond_to :json
+    
   
         
           if @order.save

@@ -35,10 +35,11 @@ Rails.application.routes.draw do
       resources :orders
       get '/order/:company_id', to: 'orders#show_orders'
       get '/p/:company_id', to: 'products#show_product'
+      put '/o/:id', to: 'orders#updatestage'
       
       resources :products
       resources :companies, param: :user_id
-      put '/userimage/:id' ,to: 'users#uploadimage'
+      put '/userimage/:id' ,to: 'users#uploadimageuser'
       put '/companyimage/:id' ,to: 'companies#uploadimage'
       get '/users/:city', to: 'users#show_costomer'
       get '/customer', to: 'users#get_customer'
@@ -65,15 +66,14 @@ Rails.application.routes.draw do
       resources :products
       get '/prod/:id', to: 'products#getprod'
       get 'avgrating/:product_id' , to: 'ratings#avgrating'
+      get 'nbrproduct/:company_id' , to: 'products#countproducts'
       get '/comment/:product_id', to: 'comments#show_comments'
-    end
-    namespace :v3 do
-     
-      resources :orders
+      get '/commande/:user_id', to: 'orders#show_orders'
       resources :orderitems
-      
-
+      resources :ratings
+      resources :comments
     end
+    
   
   end
 end
