@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_133516) do
+ActiveRecord::Schema.define(version: 2021_07_06_111333) do
 
   create_table "categories", force: :cascade do |t|
     t.string "category_name"
@@ -67,8 +67,8 @@ ActiveRecord::Schema.define(version: 2021_06_24_133516) do
     t.integer "company_id"
     t.string "stage"
     t.string "order_shipping_address"
-    t.date "order_pick_up_date"
-    t.time "order_pick_up_time"
+    t.string "order_pick_up_date"
+    t.string "order_pick_up_time"
     t.integer "user_id"
   end
 

@@ -1,6 +1,6 @@
 class Api::V3::OrderitemsController < ApplicationController
     before_action :set_order, only: %i[ show edit update destroy ]
-  
+    
     # GET /orders or /orders.json
     def index
       @orderItem = Order.all
@@ -26,15 +26,16 @@ class Api::V3::OrderitemsController < ApplicationController
     # POST /orders or /orders.json
     def create
       @orderItem = OrderItem.create(orderItem_params)
-    respond_to :json
+      
   
-        
           if @orderItem.save
-            #format.html { redirect_to @category, notice: "Category was successfully created." }
+         #  Product.change_stock(@orderItem.product_id, @orderItem.quantity)
             render json:@orderItem, status: :ok
           else
             #format.html { render :new, status: :unprocessable_entity }
-            render json: {error: @orderItem.errors.messages }
+            render json: {
+               
+            }
           
         end
     end
@@ -71,7 +72,7 @@ class Api::V3::OrderitemsController < ApplicationController
   
       # Only allow a list of trusted parameters through.
       def orderItem_params
-        params.permit(:order_id, :product_id, :quantity, :order_item_price)
+        params.require(:orderitem).permit(:order_id, :product_id, :quantity, :order_item_price)
       end
   end
   

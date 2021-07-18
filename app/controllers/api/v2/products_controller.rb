@@ -37,7 +37,8 @@ class Api::V2::ProductsController < ApplicationController
     price: params[:price],
     description: params[:description],
     available_quantity: params[:available_quantity],
-    company_id: params[:company_id]
+    company_id: params[:company_id],
+    category_id: params[:category_id]
     
     )
     if product
@@ -50,9 +51,20 @@ class Api::V2::ProductsController < ApplicationController
     end
   end
    def update
-    product =Product.find(params[:id])
-    if product.update(
-      product_params
+    img = Cloudinary::Uploader.upload(params[:image])
+    
+    product = Product.find(params[:id])
+     if product.update(
+    image: img["url"],
+    product_name: params[:product_name],
+    ref_product: params[:ref_product],
+    price: params[:price],
+    description: params[:description],
+    available_quantity: params[:available_quantity],
+    company_id: params[:company_id],
+    category_id: params[:category_id]
+   
+      
     )
     render json:{
       status: :updated,

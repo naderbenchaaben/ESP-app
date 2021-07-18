@@ -13,5 +13,20 @@ def avgrating
 
     end
     end
+    def create
+    rating = Rating.create!(
+        score: params[:score],
+        user_id: params[:user_id],
+        product_id: params[:product_id]
+    )
+    if rating 
+        render json:{
+        status: :created,
+        rating: rating
+    }
+else
+    render json: { status: 500}
+end
+    end
 
 end
